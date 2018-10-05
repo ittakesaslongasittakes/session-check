@@ -1,2 +1,2 @@
-#Session check#
+#Session check
 Session check on client side
