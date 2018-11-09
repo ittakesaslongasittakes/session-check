@@ -40,9 +40,24 @@ function setCookie(name, value, options) {
 let session = getCookie("timeStamp") ? "old" : "new";
 console.log(session);
 
+/*
+* WHEEL
+* */
+
+const next = arr => arr.splice(-1).concat(arr);
+
+let wheel =
+  session === "old" ? next(JSON.parse(`[${getCookie("wheel")}]`)) : [1, 0, 0];
+
+setCookie("wheel", wheel);
+
+console.log(wheel); // <--
+
+//
+
 setInterval(function() {
   let date = new Date();
-  const minutes = 0.5;
+  const minutes = 0.1;
   date.setTime(date.getTime() + minutes * 60 * 1000);
   setCookie("timeStamp", "_", {
     expires: date
