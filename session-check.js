@@ -59,13 +59,16 @@ function getRandomInt(min, max) {
 const littleArr = [getRandomInt(0, 2), getRandomInt(0, 2), getRandomInt(0, 2)];
 
 // Ищем нужный вариант
-const result = littleArr.map((el, i) => {
-  return i === wheel.indexOf(1) ? el : el * wheel[i];
+const result = littleArr.map((el, i, arr) => {
+  const wheelIndex = wheel.indexOf(1);
+  const polatity = arr[wheelIndex] === 1 ? true : false;
+  return polatity || i === wheelIndex ? el & wheel[i] : el | wheel[i];
 });
 
 console.log(wheel, "wheel"); // <--
 console.log(littleArr, "variants");
 console.log(result, "result");
+
 setInterval(function() {
   let date = new Date();
   const minutes = 0.1;
