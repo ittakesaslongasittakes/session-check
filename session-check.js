@@ -50,11 +50,22 @@ let wheel =
   session === "old" ? next(JSON.parse(`[${getCookie("wheel")}]`)) : [1, 0, 0];
 
 setCookie("wheel", wheel);
-
-console.log(wheel); // <--
-
 //
 
+// Генерю масив аля [v1,v2,v3]
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+const littleArr = [getRandomInt(0, 2), getRandomInt(0, 2), getRandomInt(0, 2)];
+
+// Ищем нужный вариант
+const result = littleArr.map((el, i) => {
+  return i === wheel.indexOf(1) ? el : el * wheel[i];
+});
+
+console.log(wheel, "wheel"); // <--
+console.log(littleArr, "variants");
+console.log(result, "result");
 setInterval(function() {
   let date = new Date();
   const minutes = 0.1;
